@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bacon Translate</title>
+<meta name="description" content="Fast, clean translation powered by Google Translate. History stays on your device.">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%93%3C/text%3E%3C/svg%3E">
+<script>try{var t=JSON.parse(localStorage.getItem("bacon.prefs.v1")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo" aria-hidden="true">🥓</span><h1>Bacon Translate</h1></div>
+  <div class="actions">
+    <button id="historyBtn" class="ghost" type="button">History</button>
+    <button id="themeBtn" class="ghost" type="button"></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="langbar">
+    <button id="srcBtn" class="lang-btn" type="button" aria-haspopup="dialog"><small>From</small><span id="srcName"></span></button>
+    <button id="swapBtn" class="swap" type="button" aria-label="Swap languages" title="Swap languages">⇄</button>
+    <button id="tgtBtn" class="lang-btn" type="button" aria-haspopup="dialog"><small>To</small><span id="tgtName"></span></button>
+  </div>
+
+  <div class="panels">
+    <section class="panel" aria-labelledby="inLabel">
+      <div class="panel-head">
+        <h2 id="inLabel"></h2>
+        <div class="tools">
+          <button id="pasteBtn" class="ghost sm" type="button">Paste</button>
+          <button id="clearBtn" class="ghost sm" type="button">Clear</button>
+        </div>
+      </div>
+      <textarea id="input" dir="auto" placeholder="Type or paste text to translate" aria-label="Text to translate" spellcheck="false" autocomplete="off"></textarea>
+      <div class="panel-foot"><span id="counter"></span></div>
+    </section>
+
+    <section class="panel out" aria-labelledby="outLabel">
+      <div class="panel-head">
+        <h2 id="outLabel">Translation</h2>
+        <div class="tools"><button id="copyBtn" class="ghost sm" type="button" disabled>Copy</button></div>
+      </div>
+      <div id="output" dir="auto" class="output" data-placeholder="Translation appears here" aria-live="polite"></div>
+      <div class="panel-foot"><span id="engineNote">Google Translate</span></div>
+    </section>
+  </div>
+
+  <div class="controls">
+    <button id="translateBtn" class="primary" type="button" disabled>Translate</button>
+    <label class="switch"><input type="checkbox" id="instant"><span>Instant translation</span></label>
+  </div>
+
+  <div id="status" class="status" role="alert" hidden></div>
+
+  <p class="privacy-note">Text you translate is sent to Google Translate. We run no server and store nothing about you. <button id="privacyBtn" class="link" type="button">Privacy details</button></p>
+</main>
+
+<footer class="foot">Bacon Translate is an independent open-source project, not affiliated with Google. <a href="https://github.com/numoforge/Bacon-Translate" target="_blank" rel="noopener">Source</a></footer>
+
+<dialog id="picker" aria-labelledby="pickerTitle"><div class="sheet">
+  <div class="sheet-head"><h2 id="pickerTitle"></h2><button class="ghost sm" type="button" data-close>Close</button></div>
+  <input id="pickerSearch" type="search" placeholder="Search languages" aria-label="Search languages" autocomplete="off">
+  <ul id="pickerList" class="list"></ul>
+</div></dialog>
+
+<dialog id="historyDlg" aria-labelledby="historyTitle"><div class="sheet">
+  <div class="sheet-head"><h2 id="historyTitle">History</h2><button class="ghost sm" type="button" data-close>Close</button></div>
+  <label class="switch"><input type="checkbox" id="saveHistory"><span>Save history on this device</span></label>
+  <ul id="historyList" class="list"></ul>
+  <button id="clearHistoryBtn" class="ghost danger" type="button">Delete all history</button>
+</div></dialog>
+
+<dialog id="privacyDlg" aria-labelledby="privacyTitle"><div class="sheet prose">
+  <div class="sheet-head"><h2 id="privacyTitle">Privacy</h2><button class="ghost sm" type="button" data-close>Close</button></div>
+  <p><strong>Sent to Google:</strong> the text you translate, the chosen languages, and, as with any web request, your IP address and browser details. No referrer is sent. Google's own privacy policy applies to that data.</p>
+  <p><strong>Not collected by us:</strong> Bacon Translate has no backend, no accounts, no analytics, no cookies and no API keys. We never receive your text.</p>
+  <p><strong>Stored on your device only:</strong> your translation history (up to 50 items), language choices and theme, in your browser's local storage. Turn history off or delete it in the History panel at any time.</p>
+  <p><strong>Hosting:</strong> the page is served by GitHub Pages, which may keep standard server logs under GitHub's privacy policy.</p>
+  <p><strong>Limitation:</strong> this app uses Google's unofficial, keyless web endpoint. It is undocumented, may be rate-limited, and may change or stop working without notice.</p>
+</div></dialog>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
